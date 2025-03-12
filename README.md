@@ -58,20 +58,32 @@ pnpm dev
 
 ## 📦 项目结构
 
-\`\`\`
+```
 nce-listening/
 ├── src/
-│   ├── app/                 # Next.js App Router 目录
-│   │   ├── lessons/        # 课程相关页面
-│   │   ├── profile/        # 用户档案页面
-│   │   └── training/       # 训练模式页面
-│   ├── components/         # 可复用组件
-│   │   ├── ui/            # UI 基础组件
-│   │   └── ...            # 其他业务组件
-│   └── lib/               # 工具函数和通用逻辑
-├── public/                # 静态资源
-└── ...                    # 配置文件
-\`\`\`
+│   ├── app/               # Next.js App Router 目录
+│   │   ├── lessons/      # 课程相关页面
+│   │   ├── profile/      # 用户档案页面
+│   │   └── training/     # 训练模式页面
+│   ├── components/       # 可复用组件
+│   │   ├── ui/          # UI 基础组件
+│   │   └── ...          # 其他业务组件
+│   └── lib/             # 工具函数和通用逻辑
+├── public/              # 静态资源
+└── ...                  # 配置文件
+```
+
+> 主要目录说明：
+- `src/app/`: Next.js App Router 目录，包含所有页面路由
+  - `lessons/`: 课程相关页面，包含课程列表、课程详情等
+  - `profile/`: 用户档案页面，包含用户信息、学习记录等
+  - `training/`: 训练模式页面，包含各种学习模式
+- `src/components/`: 可复用组件目录
+  - `ui/`: UI 基础组件，如按钮、输入框等
+  - `...`: 其他业务组件，如课程卡片、播放器等
+- `src/lib/`: 工具函数和通用逻辑
+- `public/`: 静态资源目录，包含图片、音频等
+- 配置文件: 包含各种项目配置文件，如 next.config.js、tailwind.config.js 等
 
 ## 🎯 主要功能
 
