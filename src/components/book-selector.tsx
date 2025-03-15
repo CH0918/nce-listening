@@ -1,47 +1,39 @@
 'use client';
 
-import { Button } from "./ui/button";
-import { ChevronDown } from "lucide-react";
+import { ArrowRightLeft, Book } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { bookIdText } from '@/lib/constant';
+import { BookId } from '@/types/lesson';
 
 interface BookSelectorProps {
-  currentBook: number;
+  // currentBook: number;
   progress: number;
   totalLessons: number;
-  onBookSelect: (book: number) => void;
+  // onBookSelect: (book: number) => void;
 }
 
-export function BookSelector({
-  currentBook,
-  progress,
-  totalLessons,
-  onBookSelect,
-}: BookSelectorProps) {
+export function BookSelector({}: // currentBook
+// onBookSelect,
+BookSelectorProps) {
   const router = useRouter();
+  const currentBook = localStorage.getItem('selectedBook') || 'a1';
+  const currentBookText = bookIdText[currentBook as BookId];
 
   return (
-    <div className="w-full p-4 bg-background border-b">
-      <div className="flex items-center justify-between mb-4">
-        <Button
-          variant="ghost"
-          className="text-lg font-semibold flex items-center gap-2"
-          onClick={() => router.push('/lessons/select')}
-        >
-          第{currentBook}册·美音 <ChevronDown className="h-4 w-4" />
-        </Button>
-        <div className="text-sm text-muted-foreground">
-          累计学习 42天
-        </div>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="text-sm text-muted-foreground">
-          已完成 {progress}/{totalLessons}
-        </div>
-        <div className="flex-1 h-2 bg-secondary rounded-full overflow-hidden">
+    <div className='w-full'>
+      <div className='container mx-auto'>
+        <div className='flex items-center justify-between py-4 bg-primary text-white'>
           <div
-            className="h-full bg-primary rounded-full"
-            style={{ width: `${(progress / totalLessons) * 100}%` }}
-          />
+            className='flex items-center gap-2 text-lg font-semibold px-4 py-2 select-none'
+            onClick={() => router.push('/books')}
+          >
+            <div className='flex items-center gap-2'>
+              <Book className='h-5 w-5 text-white' />
+              <span>{currentBookText}</span>
+            </div>
+            <ArrowRightLeft className='h-4 w-4 text-muted-foreground text-white' />
+          </div>
+          {/* <div className='text-sm text-muted-foreground'>累计学习 42天</div> */}
         </div>
       </div>
     </div>

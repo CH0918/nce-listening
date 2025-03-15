@@ -1,9 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Star } from "lucide-react";
+import Link from 'next/link';
+import { BookId } from '@/types/lesson';
+import { cn } from '@/lib/utils';
+import { Lock, CheckCircle } from 'lucide-react';
 
 interface Lesson {
-  id: number;
+  bookId: BookId;
+  id: string;
   title: string;
   imageUrl: string;
   practiceLevel: number;
@@ -16,38 +18,53 @@ interface LessonListProps {
 
 export function LessonList({ lessons }: LessonListProps) {
   return (
-    <div className="flex flex-col gap-4 p-4 pb-20">
-      {lessons.map((lesson) => (
-        <Link
-          key={lesson.id}
-          href={`/lessons/${lesson.id}`}
-          className="flex gap-4 p-4 bg-card rounded-lg border hover:border-primary transition-colors"
-        >
-          <div className="relative w-24 h-24 rounded-md overflow-hidden bg-muted">
-            <Image
-              src={lesson.imageUrl}
-              alt={lesson.title}
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="flex flex-col justify-between flex-1">
-            <div>
-              <h3 className="font-semibold mb-2">Lesson {lesson.id}</h3>
-              <p className="text-sm text-muted-foreground">{lesson.title}</p>
+    <div className='container mx-auto mb-[80px] px-2 mt-20'>
+      <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
+        {lessons.map((lesson, index) => (
+          <Link
+            key={lesson.id}
+            href={`/lesson/${lesson.bookId}/${lesson.id}`}
+            className={cn(
+              'group relative flex flex-col rounded-lg border p-6',
+              'bg-card transition-all duration-200',
+              'hover:shadow-lg hover:shadow-primary/5',
+              'hover:border-primary/50',
+              lesson.isLocked && 'opacity-80'
+            )}
+          >
+            <div className='flex items-start justify-between'>
+              <div className='flex items-center gap-4'>
+                <div className='flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary'>
+                  {index + 1}
+                </div>
+                <div>
+                  <h3 className='text-lg font-bold text-foreground'>
+                    {lesson.title}
+                  </h3>
+                </div>
+              </div>
+              <div>
+                {lesson.isLocked ? (
+                  <Lock className='text-muted-foreground' size={20} />
+                ) : (
+                  <CheckCircle className='text-green-500' size={20} />
+                )}
+              </div>
             </div>
-            <div className="flex items-center gap-1">
-              {Array.from({ length: 3 }).map((_, i) => (
-                <Star
-                  key={i}
-                  className={`w-4 h-4 ${i < lesson.practiceLevel ? 'fill-primary text-primary' : 'text-muted'}`}
-                />
-              ))}
-              <span className="text-xs text-muted-foreground ml-2">真题演练</span>
-            </div>
-          </div>
-        </Link>
-      ))}
+
+            {lesson.isLocked && (
+              <div className='absolute inset-0 flex items-center justify-center rounded-lg bg-background/50 backdrop-blur-[2px]'>
+                <div className='flex items-center gap-2 rounded-md bg-muted px-3 py-1'>
+                  <Lock size={16} className='text-muted-foreground' />
+                  <span className='text-sm font-medium text-muted-foreground'>
+                    已锁定
+                  </span>
+                </div>
+              </div>
+            )}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

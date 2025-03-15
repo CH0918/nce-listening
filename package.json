@@ -14,6 +14,7 @@
     "@types/howler": "^2.2.12",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.5.0",
     "howler": "^2.2.4",
     "lucide-react": "^0.475.0",
     "next": "15.1.7",
