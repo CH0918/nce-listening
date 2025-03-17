@@ -121,12 +121,8 @@ export default function LessonClient() {
     dataInfo[
       decodeURIComponent(lessonNumber as string) as keyof typeof dataInfo
     ] || '';
-  const lrc = `https://source.hhhstudy.online/${bookId}/${decodeURIComponent(
-    lessonNumber as string
-  )}.lrc`;
-  const mp3 = `https://source.hhhstudy.online/${bookId}/${decodeURIComponent(
-    lessonNumber as string
-  )}.mp3`;
+  const lrc = `https://source.hhhstudy.online/${bookId}/${lessonNumber}.lrc`;
+  const mp3 = `https://source.hhhstudy.online/${bookId}/${lessonNumber}.mp3`;
 
   // 确保组件已经在客户端挂载
   useEffect(() => {

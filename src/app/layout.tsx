@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import RootLayoutClient from './layout-client';
 import { Toaster } from 'sonner';
-
+export const runtime = 'edge';
 export const metadata: Metadata = {
   title: 'New Concept English Listening',
   description: 'New Concept English Listening',

@@ -23,7 +23,7 @@ export function LessonList({ lessons }: LessonListProps) {
         {lessons.map((lesson, index) => (
           <Link
             key={lesson.id}
-            href={`/lesson/${lesson.bookId}/${lesson.id}`}
+            href={`/lesson/${lesson.bookId}/${encodeURIComponent(lesson.id)}`}
             className={cn(
               'group relative flex flex-col rounded-lg border p-6',
               'bg-card transition-all duration-200',
